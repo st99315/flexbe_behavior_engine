@@ -12,8 +12,14 @@ from flexbe_core.proxy import ProxySubscriberCached
 from flexbe_onboard.flexbe_onboard import FlexbeOnboard
 
 
-if __name__ == '__main__':
-    rospy.init_node('flexbe_onboard')
+if __name__ == "__main__":
+    rospy.init_node("flexbe_onboard")
+
+    try:
+        import ray
+        ray.init()
+    except ImportError:
+        rospy.logwarn("python ray is not installed")
 
     FlexbeOnboard()
 
